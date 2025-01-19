@@ -12,6 +12,7 @@
   </div>
 
   <h3 align="center">A 3D Developer Portfolio</h3>
+ - [LIVE PREVIEW](https://gowhar-yousuf.netlify.app/)
 
    <div align="center">
      Build this project step by step with our detailed tutorial on <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a> YouTube. Join the JSM family!
