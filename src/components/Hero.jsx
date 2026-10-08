@@ -14,12 +14,12 @@ const Hero = () => {
           <div className='w-1 sm:h-80 h-40 violet-gradient' />
         </div>
 
-        <div>
+        <div className='max-w-2xl lg:max-w-[52%] rounded-2xl lg:bg-primary/70 lg:p-5 lg:backdrop-blur-sm'>
           <h1 className={`${styles.heroHeadText} text-white`}>
             Hi, I'm <span className='text-[#915EFF]'>Gowhar Yousuf</span>
           </h1>
           <p className={`${styles.heroSubText} mt-3 text-white-100 max-w-2xl`}>
-            Frontend Engineer <span className='text-[#915EFF]'>·</span> React, Next.js &amp; TypeScript
+            Full Stack Engineer <span className='text-[#915EFF]'>·</span> Web &amp; Mobile
           </p>
           <p className='mt-4 text-secondary text-base sm:text-lg max-w-xl leading-8'>
             I build accessible, production-ready web and mobile experiences for healthcare, ERP, and customer-facing products.
@@ -32,7 +32,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className='absolute inset-0 hidden md:block'>
+      <div className='absolute inset-y-0 right-0 hidden w-[54%] lg:block pointer-events-none'>
         <ComputersCanvas />
       </div>
 
