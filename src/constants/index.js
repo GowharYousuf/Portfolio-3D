@@ -53,7 +53,7 @@ export const experiences = [
     title: "Software Engineer & Frontend Developer",
     company_name: "MN Service Providers",
     companyMark: "MN",
-    iconBg: "#E6DEDD",
+    iconBg: "#383E56",
     date: "Oct 2023 - Jan 2025",
     points: [
       "Delivered 5+ internal and client-facing platforms using React, TypeScript, and Tailwind CSS, cutting delivery time by 20%.",
@@ -130,14 +130,6 @@ export const projects = [
     category: "Dashboard",
     tags: ["Dashboard"],
     image: "https://d33wubrfki0l68.cloudfront.net/6aae95694eab6fedd23bd1b3/screenshot_2026-09-19-14-00-25-0000.webp",
-    source_code_link: "https://github.com/GowharYousuf/admin-dashboard",
-  },
-  {
-    name: "Dashboard Gowhar",
-    description: "An earlier dashboard build for managing data at a glance.",
-    category: "Dashboard",
-    tags: ["Dashboard"],
-    image: "https://d33wubrfki0l68.cloudfront.net/6a633c8c70ef9e000806ffcd/screenshot_2026-07-24-10-21-16-0000.webp",
     source_code_link: "https://github.com/GowharYousuf/admin-dashboard",
   },
   {
@@ -244,21 +236,5 @@ export const projects = [
     tags: ["Productivity"],
     image: "https://d33wubrfki0l68.cloudfront.net/64cdd97cdad64a0cba2bab4d/screenshot_2023-08-05-05-10-08-0000.png",
     source_code_link: "https://github.com/GowharYousuf/ResumeBuilder-website",
-  },
-  {
-    name: "Personal Portfolio Classic",
-    description: "An original personal portfolio website.",
-    category: "Portfolio",
-    tags: ["Portfolio"],
-    image: "https://d33wubrfki0l68.cloudfront.net/64c22393d559ce5e13e071c9/screenshot_2023-07-27-07-58-22-0000.png",
-    source_code_link: "https://github.com/GowharYousuf/Personal-Portfolio-Website",
-  },
-  {
-    name: "Gowhar CV",
-    description: "An online CV with experience and project details.",
-    category: "Portfolio",
-    tags: ["Portfolio", "CV"],
-    image: "https://d33wubrfki0l68.cloudfront.net/6506a41490e9f30c20c200fd/screenshot_2023-09-17-07-01-15-0000.png",
-    source_code_link: "https://github.com/GowharYousuf/Personal-Portfolio-Website",
   },
 ];

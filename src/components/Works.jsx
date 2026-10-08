@@ -8,7 +8,12 @@ import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 
 const ProjectCard = ({ index, name, description, tags, image, source_code_link, live_demo_link, category, featured }) => (
-  <motion.div variants={fadeIn("up", "spring", Math.min(index * 0.035, 0.4), 0.55)} className='h-full'>
+  <motion.div
+    initial={{ opacity: 0, y: 16 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.35, delay: Math.min(index * 0.025, 0.25) }}
+    className='h-full'
+  >
     <Tilt
       tiltMaxAngleX={4}
       tiltMaxAngleY={4}
