@@ -1,239 +1,117 @@
-import {
-  mobile,
-  backend,
-  creator,
-  web,
-  javascript,
-  typescript,
-  html,
-  css,
-  reactjs,
-  redux,
-  tailwind,
-  nodejs,
-  mongodb,
-  git,
-  figma,
-  docker,
-  meta,
-  starbucks,
-  tesla,
-  shopify,
-  carrent,
-  jobit,
-  tripguide,
-  threejs,
-} from "../assets";
+import taskInventoryPreview from "../assets/projects/task-inventory.svg";
+import subscriblyPreview from "../assets/projects/subscribly.svg";
+import cricFacePreview from "../assets/projects/cric-face.svg";
 
 export const navLinks = [
+  { id: "about", title: "About" },
+  { id: "experience", title: "Experience" },
+  { id: "skills", title: "Skills" },
+  { id: "work", title: "Projects" },
+  { id: "education", title: "Education" },
+  { id: "contact", title: "Contact" },
+];
+
+export const skillGroups = [
   {
-    id: "about",
-    title: "About",
+    title: "Languages",
+    skills: ["JavaScript (ES6+)", "TypeScript", "Python", "HTML5", "CSS3", "SQL"],
   },
   {
-    id: "work",
-    title: "Work",
+    title: "Frontend",
+    skills: ["React.js", "Next.js", "React Native", "Expo", "Redux Toolkit", "Zustand", "Context API", "Tailwind CSS", "Material UI", "Kendo UI", "Storybook"],
   },
   {
-    id: "contact",
-    title: "Contact",
+    title: "Backend & data",
+    skills: ["FastAPI", "Express.js", "REST APIs", "GraphQL", "PostgreSQL", "MySQL", "MongoDB", "JWT"],
+  },
+  {
+    title: "Testing & tools",
+    skills: ["Jest", "React Testing Library", "Git", "GitHub", "Postman", "Docker", "Vite", "Webpack", "CI/CD", "Firebase", "Clerk"],
+  },
+  {
+    title: "Practices",
+    skills: ["Responsive design", "Accessibility (WCAG)", "SSR", "Code splitting", "Lazy loading", "SEO", "Core Web Vitals", "Cross-browser testing", "Agile"],
   },
 ];
 
-const services = [
+export const experiences = [
   {
-    title: "Web Developer",
-    icon: web,
-  },
-  {
-    title: "React  Developer",
-    icon: mobile,
-  },
-  {
-    title: "Front End Developer",
-    icon: backend,
-  },
-  {
-    title: "Content Creator",
-    icon: creator,
-  },
-];
-
-const technologies = [
-  {
-    name: "HTML 5",
-    icon: html,
-  },
-  {
-    name: "CSS 3",
-    icon: css,
-  },
-  {
-    name: "JavaScript",
-    icon: javascript,
-  },
-  {
-    name: "TypeScript",
-    icon: typescript,
-  },
-  {
-    name: "React JS",
-    icon: reactjs,
-  },
-  {
-    name: "Redux Toolkit",
-    icon: redux,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  },
-  {
-    name: "Node JS",
-    icon: nodejs,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-  },
-  {
-    name: "Three JS",
-    icon: threejs,
-  },
-  {
-    name: "git",
-    icon: git,
-  },
-  {
-    name: "figma",
-    icon: figma,
-  },
-  {
-    name: "docker",
-    icon: docker,
-  },
-];
-
-const experiences = [
-  {
-    title: "Software Engineer & Front End Developer",
-    company_name: "MN Service Providers",
-    icon: starbucks, // Replace with an appropriate icon
+    title: "Frontend Engineer",
+    company_name: "Mimsys Technologies",
+    companyMark: "M",
     iconBg: "#383E56",
-    date: "Oct 2023 - Present",
+    date: "Jan 2025 - Present",
     points: [
-      "Engineered interactive components using advanced state management techniques, reducing page load times by 35% and enhancing user satisfaction by 25%.",
-      "Delivered optimized, responsive, and high-performance software solutions within strict deadlines, achieving a 30% increase in client satisfaction ratings.",
-      "Developed a comprehensive management platform with RESTful APIs and token-based authentication, ensuring robust security and reducing data breaches by 40%.",
-      "Led cross-functional teams, mentoring junior developers and driving a 50% increase in positive feedback while reducing technical errors by 20%.",
-      "Utilized Git and GitHub to efficiently manage codebase, improving team productivity by 25%.",
+      "Built 50+ reusable React, Next.js, and TypeScript components, data grids, and dashboards across 3+ healthcare and ERP modules, reducing UI development time by 40%.",
+      "Integrated REST APIs and .NET services with JWT authentication and role-based access control for secure clinical workflows.",
+      "Implemented Redux Toolkit and Context API state, form validation, and error boundaries, reducing production runtime errors by 30%.",
+      "Improved load times by 20-30% through code splitting, lazy loading, and memoization while targeting Core Web Vitals.",
+      "Delivered accessible appointment, medication, and patient-management interfaces, reducing reported UI bugs by 25%.",
     ],
   },
   {
-    title: "Web Developer and Designer",
-    company_name: "IIFA Multimedia",
-    icon: tesla, // Replace with an appropriate icon
+    title: "Software Engineer & Frontend Developer",
+    company_name: "MN Service Providers",
+    companyMark: "MN",
     iconBg: "#E6DEDD",
+    date: "Oct 2023 - Jan 2025",
+    points: [
+      "Delivered 5+ internal and client-facing platforms using React, TypeScript, and Tailwind CSS, cutting delivery time by 20%.",
+      "Built reusable UI libraries, API-driven dashboards, and dynamic forms integrated with token-based authentication.",
+      "Maintained Git branching, pull requests, and code reviews while collaborating with backend and QA teams in Agile sprints.",
+      "Resolved performance bottlenecks, UI regressions, and cross-browser issues, reducing bug turnaround time by 35%.",
+    ],
+  },
+  {
+    title: "Web Developer & Designer",
+    company_name: "IIFA Multimedia",
+    companyMark: "IIFA",
+    iconBg: "#383E56",
     date: "Oct 2022 - Oct 2023",
     points: [
-      "Developed adaptive web pages using HTML, CSS, JavaScript, and Bootstrap, achieving a 30% increase in cross-device compatibility and responsiveness.",
-      "Implemented front-end and back-end integration points focusing on security, efficiency, and usability, resulting in a 25% improvement in data flow speed through AJAX.",
-      "Applied best practices using Lighthouse and PageSpeed Insights, improving site performance by 40%.",
-    ],
-  },
-  {
-    title: "Programmer (Apprenticeship)",
-    company_name: "Advantech Computer Applications",
-    icon: shopify, // Replace with an appropriate icon
-    iconBg: "#383E56",
-    date: "Mar 2021 - Jul 2021",
-    points: [
-      "Facilitated team knowledge sharing initiatives by conducting workshops, resulting in a 25% increase in overall efficiency across the team.",
-      "Drove the adoption of modern development tools, reducing time required for new feature implementation by 20%.",
-      "Engaged in customer feedback sessions to implement key UI/UX improvements, leading to a 15% decrease in support inquiries.",
+      "Designed and developed responsive, mobile-first websites using HTML5, CSS3, JavaScript, Bootstrap, and REST APIs.",
+      "Improved page load times by 30-40% and SEO scores through Lighthouse and PageSpeed Insights optimization.",
     ],
   },
 ];
 
-const testimonials = [
+export const education = [
   {
-    testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
+    degree: "Master of Computer Applications (MCA)",
+    institution: "Chandigarh University",
+    date: "Aug 2025 - Aug 2027",
   },
   {
-    testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    degree: "Bachelor of Computer Applications",
+    institution: "University of Kashmir",
+    date: "Apr 2019 - Dec 2022",
   },
 ];
 
-const projects = [
+export const projects = [
   {
-    name: "Education Website",
+    name: "Task Inventory",
     description:
-      "Developed a comprehensive educational website utilizing HTML5, CSS3, JavaScript, and Bootstrap, focusing on creating an intuitive and engaging user experience.",
-    tags: [
-      {
-        name: "html5",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "bootstrap",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: carrent, // Replace with an appropriate image
-    source_code_link: "https://eduactionportfoliobygowharyousuf.netlify.app",
+      "Full-stack task and team management app with role-based administration, team assignments, task search and filters, dashboard charts, and light/dark themes.",
+    tags: ["React", "TypeScript", "Vite", "Tailwind", "FastAPI", "PostgreSQL"],
+    image: taskInventoryPreview,
+    source_code_link: "https://github.com/GowharYousuf/task-inventory",
+    live_demo_link: "https://task-inventory-theta.vercel.app/",
   },
   {
-    name: "Cric Face Merchandise Application",
+    name: "Subscribly",
     description:
-      "Architected a robust e-commerce application for cricket merchandise using React.js, Redux, Tailwind CSS, and React Router, demonstrating advanced front-end engineering skills.",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "redux",
-        color: "green-text-gradient",
-      },
-    ],
-    image: jobit, // Replace with an appropriate image
-    source_code_link: "https://cricface.netlify.app",
+      "Cross-platform subscription management app with Expo Router navigation, reusable mobile UI, protected routes, and persistent Clerk authentication.",
+    tags: ["React Native", "Expo", "Clerk", "NativeWind"],
+    image: subscriblyPreview,
+    source_code_link: "https://github.com/GowharYousuf/Subscribly",
   },
   {
-    name: "Personal Portfolio Website",
+    name: "Cric Face Merchandise",
     description:
-      "Built a responsive, modern portfolio website using React, JavaScript, and Bootstrap, showcasing professional web development skills and technical versatility.",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "bootstrap",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: tripguide, // Replace with an appropriate image
-    source_code_link: "https://gowharyousufpersonalportfolio.netlify.app",
+      "Responsive cricket merchandise storefront with product listings, cart and checkout workflows, API-powered product data, and optimized Redux state updates.",
+    tags: ["React", "Redux Toolkit", "REST APIs"],
+    image: cricFacePreview,
+    source_code_link: "https://github.com/GowharYousuf/CricFace",
   },
 ];
-
-export { services, technologies, experiences, testimonials, projects };

@@ -1,9 +1,8 @@
 import React from "react";
-import Tilt from "react-tilt";
+import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
-import { github } from "../assets";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
@@ -15,35 +14,26 @@ const ProjectCard = ({
   tags,
   image,
   source_code_link,
+  live_demo_link,
 }) => {
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
       <Tilt
-        options={{
-          max: 45,
-          scale: 1,
-          speed: 450,
-        }}
-        className='bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full'
+        tiltMaxAngleX={45}
+        tiltMaxAngleY={45}
+        scale={1}
+        transitionSpeed={450}
+        className='h-full bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full border border-white/5'
       >
         <div className='relative w-full h-[230px]'>
           <img
             src={image}
-            alt='project_image'
+            alt={`${name} project preview`}
             className='w-full h-full object-cover rounded-2xl'
           />
 
           <div className='absolute inset-0 flex justify-end m-3 card-img_hover'>
-            <div
-              onClick={() => window.open(source_code_link, "_blank")}
-              className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
-            >
-              <img
-                src={github}
-                alt='source code'
-                className='w-1/2 h-1/2 object-contain'
-              />
-            </div>
+            <span className='rounded-full bg-black/70 px-3 py-1 text-xs text-white'>Featured project</span>
           </div>
         </div>
 
@@ -54,13 +44,13 @@ const ProjectCard = ({
 
         <div className='mt-4 flex flex-wrap gap-2'>
           {tags.map((tag) => (
-            <p
-              key={`${name}-${tag.name}`}
-              className={`text-[14px] ${tag.color}`}
-            >
-              #{tag.name}
-            </p>
+            <span key={`${name}-${tag}`} className='rounded-full bg-primary px-3 py-1 text-xs text-[#dfd9ff]'>#{tag}</span>
           ))}
+        </div>
+
+        <div className='mt-6 flex gap-3'>
+          {live_demo_link && <a href={live_demo_link} target='_blank' rel='noreferrer' className='text-sm font-semibold text-white hover:text-[#b99bff]'>Live app ↗</a>}
+          <a href={source_code_link} target='_blank' rel='noreferrer' className='text-sm font-semibold text-white hover:text-[#b99bff]'>Source code ↗</a>
         </div>
       </Tilt>
     </motion.div>
@@ -80,11 +70,7 @@ const Works = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className='mt-3 text-secondary text-[17px] max-w-3xl leading-[30px]'
         >
-          Following projects showcases my skills and experience through
-          real-world examples of my work. Each project is briefly described with
-          links to code repositories and live demos in it. It reflects my
-          ability to solve complex problems, work with different technologies,
-          and manage projects effectively.
+          A selection of web and mobile products I’ve built, from a full-stack team task manager to a cross-platform subscription app and an API-powered storefront.
         </motion.p>
       </div>
 
@@ -97,4 +83,4 @@ const Works = () => {
   );
 };
 
-export default SectionWrapper(Works, "");
+export default SectionWrapper(Works, "work");

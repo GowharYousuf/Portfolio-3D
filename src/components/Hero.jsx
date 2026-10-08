@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <section className={`relative w-full h-screen mx-auto`}>
       <div
-        className={`absolute inset-0 top-[120px]  max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
+        className={`absolute inset-0 top-[120px] z-10 max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}
       >
         <div className='flex flex-col justify-center items-center mt-5'>
           <div className='w-5 h-5 rounded-full bg-[#915EFF]' />
@@ -18,14 +18,23 @@ const Hero = () => {
           <h1 className={`${styles.heroHeadText} text-white`}>
             Hi, I'm <span className='text-[#915EFF]'>Gowhar Yousuf</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I develop  user <br className='sm:block hidden' />
-            interfaces and web applications
+          <p className={`${styles.heroSubText} mt-3 text-white-100 max-w-2xl`}>
+            Frontend Engineer <span className='text-[#915EFF]'>·</span> React, Next.js &amp; TypeScript
           </p>
+          <p className='mt-4 text-secondary text-base sm:text-lg max-w-xl leading-8'>
+            I build accessible, production-ready web and mobile experiences for healthcare, ERP, and customer-facing products.
+          </p>
+          <div className='mt-7 flex flex-wrap gap-3'>
+            <a href='#work' className='rounded-xl bg-[#915EFF] px-5 py-3 text-white font-semibold hover:bg-[#7b4be0] transition-colors'>View my work</a>
+            <a href='https://www.linkedin.com/in/gowhar-yousuf-262594323' target='_blank' rel='noreferrer' className='rounded-xl border border-white/20 px-5 py-3 text-white font-semibold hover:bg-white/10 transition-colors'>LinkedIn ↗</a>
+            <a href='https://github.com/GowharYousuf' target='_blank' rel='noreferrer' className='rounded-xl border border-white/20 px-5 py-3 text-white font-semibold hover:bg-white/10 transition-colors'>GitHub ↗</a>
+          </div>
         </div>
       </div>
 
-      <ComputersCanvas />
+      <div className='absolute inset-0 hidden md:block'>
+        <ComputersCanvas />
+      </div>
 
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
         <a href='#about'>
