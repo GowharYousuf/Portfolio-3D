@@ -47,7 +47,24 @@ function createSoundtrack() {
       step++; next += beat;
     }
   }, 80);
-  return { context, master, dispose: () => { clearInterval(timer); context.close(); } };
+  const launch = (duration = 2.7) => {
+    const time = context.currentTime + 0.02;
+    const buffer = context.createBuffer(1, Math.ceil(context.sampleRate * duration), context.sampleRate);
+    const samples = buffer.getChannelData(0);
+    for (let i = 0; i < samples.length; i++) samples[i] = Math.random() * 2 - 1;
+    const noise = context.createBufferSource(), filter = context.createBiquadFilter(), amp = context.createGain();
+    noise.buffer = buffer; filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(110, time);
+    filter.frequency.exponentialRampToValueAtTime(1800, time + duration * 0.65);
+    amp.gain.setValueAtTime(0.0001, time);
+    amp.gain.exponentialRampToValueAtTime(0.65, time + duration * 0.3);
+    amp.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+    noise.connect(filter); filter.connect(amp); amp.connect(master);
+    noise.start(time); noise.stop(time + duration);
+    noise.onended = () => { noise.disconnect(); filter.disconnect(); amp.disconnect(); };
+    note(33, time, duration, 0.12, 'triangle');
+  };
+  return { context, master, launch, dispose: () => { clearInterval(timer); context.close(); } };
 }
 export default function MusicPlayer() {
   const engine = useRef();
@@ -79,10 +96,17 @@ export default function MusicPlayer() {
       if (document.hidden) { engine.current?.context.suspend(); setPlaying(false); }
       else if (enabled.current) start();
     };
+    const launch = event => {
+      enabled.current = true;
+      start();
+      engine.current?.launch(event.detail?.reduced ? 0.45 : 2.7);
+    };
+    window.addEventListener('portfolio:launch', launch);
     window.addEventListener('portfolio:enter', enter);
     document.addEventListener('visibilitychange', visibility);
     return () => {
       window.removeEventListener('portfolio:enter', enter);
+      window.removeEventListener('portfolio:launch', launch);
       document.removeEventListener('visibilitychange', visibility);
       if (engine.current) { engine.current.context.onstatechange = null; engine.current.dispose(); engine.current = null; }
     };

@@ -334,3 +334,50 @@ button,a { touch-action:manipulation; }
 @media(max-width:600px) { .portal { width:125px; height:125px; margin-top:24px; } .welcome-content h1 { letter-spacing:-1px; } .welcome-coordinate { display:none; } .welcome-sound-note { max-width:240px; margin:12px auto 0; line-height:1.7; } }
 @media(max-height:700px) { .portal { width:90px; height:90px; margin:14px auto; } .portal i { font-size:40px; } .welcome-screen { padding-top:25px; padding-bottom:25px; } .welcome-content h1 { font-size:38px; } .welcome-coordinate { display:none; } }
 @media(prefers-reduced-motion:reduce) { .portal span,.portal i { animation:none; } }
+/* Spacecraft departure and the orbital page navigator */
+html { scrollbar-width:none; }
+html::-webkit-scrollbar,body::-webkit-scrollbar { display:none; width:0; height:0; }
+.launch-pad { position:relative; height:190px; width:200px; margin:18px auto 10px; perspective:700px; }
+.welcome-ship { position:absolute; width:100px; height:167px; left:50px; top:0; z-index:3; filter:drop-shadow(0 0 22px #bda6ef4d); animation:ship-hover 4s ease-in-out infinite; }
+.welcome-ship svg { width:100%; height:100%; }
+.launch-rings { position:absolute; left:20px; right:20px; bottom:0; height:44px; border:1px solid #c7aafc70; border-radius:50%; box-shadow:0 0 25px #ad7dea40,inset 0 0 20px #ad7dea30; }
+.launch-rings:after { content:''; position:absolute; inset:9px 20px; border:1px dashed #cbb6f660; border-radius:50%; }
+.engine-glow { position:absolute; width:100px; height:60px; left:50px; bottom:10px; background:radial-gradient(ellipse,#bcabff55,transparent 70%); opacity:.6; }
+.welcome-ship .ship-exhaust { transform-origin:60px 150px; animation:engine-idle .4s ease-in-out infinite alternate; }
+.is-launching .welcome-ship { animation:ship-departure 2.6s cubic-bezier(.6,.05,.7,.4) forwards; }
+.is-launching .welcome-ship .ship-exhaust { animation:engine-thrust .12s ease-in-out infinite alternate; }
+.is-launching .engine-glow { animation:launch-flash 2s ease-out forwards; }
+.is-launching .welcome-content>p,.is-launching .welcome-content>h1,.is-launching .enter-world { animation:launch-copy .7s ease-in forwards; }
+.is-launching .welcome-status { animation:none!important; }
+.is-launching .welcome-status>span { background:#a9e6ff; }
+.is-launching .launch-rings { animation:launch-copy 1.2s ease-in forwards; }
+.is-launching .welcome-ship:after { content:''; position:absolute; top:80%; left:32%; width:36%; height:220px; background:linear-gradient(#fff4d6,#9ccfff99,#b68fff00); filter:blur(9px); z-index:-1; }
+.launch-clouds { position:absolute; inset:0; pointer-events:none; z-index:5; opacity:0; }
+.launch-clouds span { position:absolute; width:110vw; height:65vh; border-radius:50%; background:radial-gradient(ellipse,#e8e1fc 5%,#c5b3e6 32%,#a58bc480 52%,transparent 70%); filter:blur(18px); }
+.launch-clouds span:nth-child(1) { left:-45vw; bottom:-25vh; }
+.launch-clouds span:nth-child(2) { right:-45vw; bottom:-20vh; }
+.launch-clouds span:nth-child(3) { left:-20vw; top:-35vh; }
+.launch-clouds span:nth-child(4) { right:-25vw; top:-25vh; }
+.launch-clouds span:nth-child(5) { left:-5vw; bottom:-45vh; }
+.is-launching .launch-clouds { animation:cloud-crossing 3.8s ease-in-out forwards; }
+.is-launching { animation:departure-reveal 3.8s linear forwards; }
+.ship-scrollbar { position:fixed; z-index:42; top:110px; bottom:110px; right:3px; width:34px; touch-action:none; cursor:grab; user-select:none; }
+.ship-scrollbar:active { cursor:grabbing; }
+.ship-scroll-track,.ship-scroll-progress { position:absolute; left:16px; top:0; width:2px; border-radius:4px; background:#bbb2e121; pointer-events:none; }
+.ship-scroll-track { height:100%; }
+.ship-scroll-progress { background:linear-gradient(#b49be3,#8ee4f8); box-shadow:0 0 8px #b49be355; }
+.scroll-ship { position:absolute; left:2px; width:30px; height:48px; filter:drop-shadow(0 0 6px #ad8eea88); pointer-events:none; }
+.scroll-ship svg { height:100%; width:100%; }
+.scroll-ship .ship-exhaust { animation:engine-idle .5s ease-in-out infinite alternate; transform-origin:60px 150px; }
+.ship-scrollbar:active .ship-exhaust { animation:engine-thrust .12s ease-in-out infinite alternate; }
+@keyframes ship-hover { 50% { transform:translateY(-8px) rotate(2deg); } }
+@keyframes engine-idle { to { transform:scaleY(.5); opacity:.5; } }
+@keyframes engine-thrust { to { transform:scaleY(1.7) scaleX(.8); } }
+@keyframes ship-departure { 0% { transform:translateY(0); } 20% { transform:translate(2px,-5px) rotate(2deg); } 35% { transform:translate(-2px,-12px) rotate(-2deg); } 60% { transform:translate(0,-90px) scale(.95); } 100% { transform:translate(12vw,-110vh) rotate(12deg) scale(.6); } }
+@keyframes launch-flash { 30% { opacity:1; transform:scale(2.4); } 100% { opacity:0; transform:scale(4); } }
+@keyframes launch-copy { to { opacity:0; transform:translateY(12px); } }
+@keyframes cloud-crossing { 0%,30% { opacity:0; transform:translateY(65vh) scale(.8); } 56%,72% { opacity:1; transform:translateY(0) scale(1.6); } 100% { opacity:0; transform:translateY(-55vh) scale(2.2); } }
+@keyframes departure-reveal { 0%,70% { opacity:1; } 100% { opacity:0; } }
+@media(max-width:600px) { .ship-scrollbar { right:0; width:23px; top:95px; bottom:100px; } .ship-scroll-track,.ship-scroll-progress { left:11px; } .scroll-ship { left:0; width:23px; } .launch-pad { height:160px; margin-top:15px; } .welcome-ship { height:145px; width:88px; left:56px; } .music-player { right:30px; } }
+@media(max-height:740px) { .launch-pad { height:120px; margin:12px auto 5px; } .welcome-ship { height:110px; width:66px; left:67px; } .spaceport .welcome-content h1 { font-size:36px; } .spaceport .welcome-status { margin:14px 0; } }
+@media(prefers-reduced-motion:reduce) { .welcome-ship,.ship-exhaust { animation:none!important; } .is-launching .welcome-ship { transform:none; } .is-launching .launch-clouds { display:none; } .is-launching { animation:departure-reveal .4s linear forwards!important; } }
