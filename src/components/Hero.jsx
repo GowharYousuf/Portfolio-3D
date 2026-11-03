@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
-const InteractiveDesk = lazy(() => import('./canvas/InteractiveDesk'));
+import { loadWorkspace } from '../utils/workspace';
+const InteractiveDesk = lazy(loadWorkspace);
 export default function Hero() {
   return <section className="portfolio-hero" id="home">
     <div className="hero-copy">

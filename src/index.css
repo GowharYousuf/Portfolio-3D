@@ -302,3 +302,35 @@ button,a { touch-action:manipulation; }
 @keyframes music-wave { to { transform:scaleY(.35); } }
 @media(max-width:900px) { .contact-layout { grid-template-columns:1fr; } .contact-layout>div:last-child,.contact-globe { min-height:380px; height:380px; } }
 @media(max-width:600px) { .music-player { bottom:12px; right:12px; gap:10px; padding:8px 12px; } .music-player input { width:50px; } .site-footer { padding-bottom:110px; } }
+/* A star-lit entrance into the portfolio */
+.site-shell { position:relative; z-index:1; }
+.cosmic-background { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; background:#050816; }
+.cosmic-background canvas { position:absolute; inset:0; opacity:.75; }
+.cosmic-glow { position:absolute; inset:0; background:radial-gradient(ellipse at 75% 25%,#56357c26,transparent 55%),radial-gradient(ellipse at 10% 80%,#1c546321,transparent 50%); }
+.welcome-screen { position:fixed; inset:0; z-index:100; display:grid; place-items:center; overflow:auto; padding:35px 24px; background:#050816; }
+.welcome-nebula { position:absolute; inset:0; z-index:1; pointer-events:none; background:radial-gradient(ellipse at 50% 37%,#8850c92b,transparent 55%); }
+.welcome-content { position:relative; z-index:2; width:100%; max-width:650px; text-align:center; }
+.welcome-kicker { color:#9a91b3; font-size:10px; letter-spacing:3px; }
+.portal { width:160px; height:160px; position:relative; display:grid; place-items:center; margin:28px auto 22px; }
+.portal>span { position:absolute; inset:10px; border-radius:50%; border:1px solid #bfa6f18c; box-shadow:0 0 28px #9d5ceb32,inset 0 0 28px #9d5ceb25; animation:portal-orbit 15s linear infinite; }
+.portal>span:nth-child(2) { inset:0; transform:rotateX(55deg) rotate(-25deg); border-color:#e0adca80; animation:portal-ring 12s linear infinite; }
+.portal>span:nth-child(3) { inset:28px; border-style:dashed; border-color:#a595d951; animation-direction:reverse; }
+.portal i { font-style:normal; font-size:57px; color:#ded0ff; text-shadow:0 0 30px #ae75ff; animation:portal-breathe 4s ease-in-out infinite alternate; }
+.portal:after { content:''; position:absolute; width:7px; height:7px; background:#f6d6ff; border-radius:50%; top:20px; right:25px; box-shadow:0 0 18px #d2b3ff; }
+.welcome-chapter { color:#b6a0d5; font-size:9px; letter-spacing:3px; margin-bottom:16px; }
+.welcome-content h1 { font-size:clamp(36px,5vw,63px); font-weight:550; line-height:1.17; letter-spacing:-2px; }
+.welcome-content h1 em { font-family:Georgia,serif; font-weight:400; color:#ccb3f6; }
+#welcome-description { color:#aaa1be; font-size:13px; line-height:1.9; margin-top:20px; }
+.welcome-status { display:flex; justify-content:center; align-items:center; gap:8px; color:#90859f; font-size:10px; margin:22px 0; }
+.welcome-status>span { display:inline-block; width:5px; height:5px; border-radius:50%; background:#b59bde; box-shadow:0 0 10px #a77bea; }
+.enter-world { display:inline-flex; justify-content:space-between; gap:40px; align-items:center; padding:16px 25px; border-radius:30px; color:#1c122d; background:linear-gradient(120deg,#ddc8fc,#a38add); font-size:13px; font-weight:600; box-shadow:0 0 35px #a06ee42b; transition:transform .25s; }
+.enter-world:hover { transform:translateY(-3px); }
+.enter-quiet { display:block; margin:16px auto 0; padding:8px 12px; font-size:11px; color:#b4a6c7; }
+.welcome-sound-note { font-size:9px; color:#7e748f; margin-top:15px; }
+.welcome-coordinate { position:absolute; bottom:24px; left:30px; font-size:8px; color:#7d728d; letter-spacing:2px; }
+@keyframes portal-orbit { to { transform:rotate(360deg); } }
+@keyframes portal-ring { to { transform:rotateX(55deg) rotate(335deg); } }
+@keyframes portal-breathe { to { opacity:.6; transform:scale(.9); } }
+@media(max-width:600px) { .portal { width:125px; height:125px; margin-top:24px; } .welcome-content h1 { letter-spacing:-1px; } .welcome-coordinate { display:none; } .welcome-sound-note { max-width:240px; margin:12px auto 0; line-height:1.7; } }
+@media(max-height:700px) { .portal { width:90px; height:90px; margin:14px auto; } .portal i { font-size:40px; } .welcome-screen { padding-top:25px; padding-bottom:25px; } .welcome-content h1 { font-size:38px; } .welcome-coordinate { display:none; } }
+@media(prefers-reduced-motion:reduce) { .portal span,.portal i { animation:none; } }

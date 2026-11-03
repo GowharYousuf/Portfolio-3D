@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 // Original ambient electronic loop: soft pads, a pentatonic arpeggio and a subdued pulse.
 function createSoundtrack() {
@@ -51,31 +51,52 @@ function createSoundtrack() {
 }
 export default function MusicPlayer() {
   const engine = useRef();
+  const enabled = useRef(true);
+  const volumeRef = useRef(18);
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(18);
   const [error, setError] = useState('');
-  useEffect(() => {
-    const hide = () => { if (document.hidden && engine.current) { engine.current.context.suspend(); setPlaying(false); } };
-    document.addEventListener('visibilitychange', hide);
-    return () => { document.removeEventListener('visibilitychange', hide); engine.current?.dispose(); };
-  }, []);
-  const toggle = async () => {
+  const start = useCallback(() => {
     try {
       if (!engine.current) {
         engine.current = createSoundtrack();
-        engine.current.master.gain.value = volume / 100;
+        engine.current.master.gain.value = volumeRef.current / 100;
+        engine.current.context.onstatechange = () => setPlaying(engine.current?.context.state === 'running');
       }
-      if (playing) { await engine.current.context.suspend(); setPlaying(false); }
-      else { await engine.current.context.resume(); setPlaying(true); }
+      setPlaying(engine.current.context.state === 'running');
+      engine.current.context.resume().catch(() => setPlaying(false));
       setError('');
     } catch { setError('Audio is unavailable in this browser.'); setPlaying(false); }
+  }, []);
+  useEffect(() => {
+    start();
+    const enter = event => {
+      enabled.current = event.detail.sound;
+      if (enabled.current) start();
+      else { engine.current?.context.suspend(); setPlaying(false); }
+    };
+    const visibility = () => {
+      if (document.hidden) { engine.current?.context.suspend(); setPlaying(false); }
+      else if (enabled.current) start();
+    };
+    window.addEventListener('portfolio:enter', enter);
+    document.addEventListener('visibilitychange', visibility);
+    return () => {
+      window.removeEventListener('portfolio:enter', enter);
+      document.removeEventListener('visibilitychange', visibility);
+      if (engine.current) { engine.current.context.onstatechange = null; engine.current.dispose(); engine.current = null; }
+    };
+  }, [start]);
+  const toggle = () => {
+    if (playing) { enabled.current = false; engine.current?.context.suspend(); setPlaying(false); }
+    else { enabled.current = true; start(); }
   };
   return <aside className="music-player" aria-label="Ambient music player">
     <button type="button" onClick={toggle} aria-label={playing ? 'Pause music' : 'Play music'} aria-pressed={playing}>
       <span className={playing ? 'equalizer is-playing' : 'equalizer'} aria-hidden="true"><i /><i /><i /><i /></span>
       <span>{playing ? 'Sound on' : 'Play music'}<small>NEON CIRCUIT · AMBIENT</small></span>
     </button>
-    <label><span className="sr-only">Music volume</span><input aria-label="Music volume" type="range" min="0" max="50" value={volume} onChange={e => { const value = Number(e.target.value); setVolume(value); if(engine.current) engine.current.master.gain.setTargetAtTime(value / 100, engine.current.context.currentTime, 0.08); }} /></label>
+    <label><span className="sr-only">Music volume</span><input aria-label="Music volume" type="range" min="0" max="50" value={volume} onChange={e => { const value = Number(e.target.value); volumeRef.current = value; setVolume(value); if(engine.current) engine.current.master.gain.setTargetAtTime(value / 100, engine.current.context.currentTime, 0.08); }} /></label>
     {error && <p role="status">{error}</p>}
   </aside>;
 }
