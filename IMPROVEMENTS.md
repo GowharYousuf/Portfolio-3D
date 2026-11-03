@@ -29,4 +29,12 @@ Copy `.env.example` to `.env.local` and supply all three public EmailJS configur
 
 ## Hosting
 
+## Resume-led exploration
+
+Content is aligned with the supplied Gowhar Yousuf resume: Frontend Engineer positioning, React Query, Node.js, Vercel, listed engineering practices, hospital insurance work, and SQLAlchemy for Task Inventory. The original PDF is bundled unchanged at `/gowhar-yousuf-resume.pdf`.
+
+The project universe links three interactive Three.js planets to resume-grounded project summaries. Small task, subscription-total, and merchandise-cart demonstrations use explicit sample data in browser-local state; they are concept demos, not connections to production applications.
+
+Mission Control provides section navigation, quick-view switching, and resume download. Quick view can also be entered from the welcome screen. Career constellation stars select each role, and a satellite discovery reveals the listed MCA program.
+
 Vite generates the static site in `dist/`. The `.openai/hosting.json` file binds this copy to its Sites deployment. The original GitHub repository is retained as the Git origin; publishing this copy to Sites does not push changes to GitHub.

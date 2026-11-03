@@ -52,19 +52,19 @@ export const skillGroups = [
   },
   {
     title: "Frontend",
-    skills: ["React.js", "Next.js", "React Native", "Expo", "Redux Toolkit", "Zustand", "Context API", "Tailwind CSS", "Material UI", "Kendo UI", "Storybook"],
+    skills: ["React.js", "Next.js", "React Native", "Expo", "Redux Toolkit", "Zustand", "Context API", "React Query", "Tailwind CSS", "Material UI", "Kendo UI", "Storybook"],
   },
   {
     title: "Backend & data",
-    skills: ["FastAPI", "Express.js", "REST APIs", "GraphQL", "PostgreSQL", "MySQL", "MongoDB", "JWT"],
+    skills: ["Node.js", "FastAPI", "Express.js", "REST APIs", "GraphQL", "PostgreSQL", "MySQL", "MongoDB", "JWT"],
   },
   {
     title: "Testing & tools",
-    skills: ["Jest", "React Testing Library", "Git", "GitHub", "Postman", "Docker", "Vite", "Webpack", "CI/CD", "Firebase", "Clerk"],
+    skills: ["Jest", "React Testing Library", "Git", "GitHub", "Postman", "Docker", "Vite", "Webpack", "CI/CD", "Vercel", "Firebase", "Clerk"],
   },
   {
     title: "Practices",
-    skills: ["Responsive design", "Accessibility (WCAG)", "SSR", "Code splitting", "Lazy loading", "SEO", "Core Web Vitals", "Cross-browser testing", "Agile"],
+    skills: ["Responsive design", "Accessibility (WCAG)", "SSR", "Code splitting", "Lazy loading", "SEO", "Core Web Vitals", "Cross-browser testing", "Code reviews", "Agile", "Debugging", "Refactoring", "Test generation", "Prompt engineering", "Code generation"],
   },
 ];
 
@@ -79,7 +79,7 @@ export const experiences = [
       "Built 50+ reusable React, Next.js, and TypeScript components, data grids, and dashboards across 3+ healthcare and ERP modules, reducing UI development time by 40%.",
       "Integrated REST APIs and .NET services with JWT authentication and role-based access control for secure clinical workflows.",
       "Implemented Redux Toolkit and Context API state, form validation, and error boundaries, reducing production runtime errors by 30%.",
-      "Improved load times by 20-30% through code splitting, lazy loading, and memoization while targeting Core Web Vitals.",
+      "Built a hospital insurance platform with React, Next.js, TypeScript, Node.js, and Express.js for claims processing, payment tracking, audit logging, and role-based access.",
       "Delivered accessible appointment, medication, and patient-management interfaces, reducing reported UI bugs by 25%.",
     ],
   },
@@ -128,7 +128,7 @@ export const projects = [
     featured: true,
     description:
       "Full-stack task and team management app with role-based administration, team assignments, task search and filters, dashboard charts, and light/dark themes.",
-    tags: ["React", "TypeScript", "Vite", "Tailwind", "FastAPI", "PostgreSQL"],
+    tags: ["React", "TypeScript", "Vite", "Tailwind", "FastAPI", "SQLAlchemy", "PostgreSQL"],
     image: taskInventoryPreview,
     source_code_link: "https://github.com/GowharYousuf/task-inventory",
     live_demo_link: "https://task-inventory-theta.vercel.app/",

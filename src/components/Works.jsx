@@ -6,6 +6,7 @@ import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
+import ProjectUniverse from "./ProjectUniverse";
 
 const ProjectCard = ({ index, name, description, tags, image, source_code_link, live_demo_link, category, featured, reduceMotion, conceptVisual }) => (
   <motion.div
@@ -86,6 +87,7 @@ const Works = () => {
         </motion.p>
       </div>
 
+      <ProjectUniverse />
       <div className="project-toolbar" role="group" aria-label="Filter projects">
         {["All", "Web", "Mobile", "3D"].map(value => <button type="button" key={value} aria-pressed={filter === value} onClick={() => { setFilter(value); setShowAll(false); }}>{value}</button>)}
         <input type="search" aria-label="Search projects" placeholder="Search projects or technologies…" value={query} onChange={e => { setQuery(e.target.value); setShowAll(false); }} />

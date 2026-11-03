@@ -1,81 +1,13 @@
-import React from "react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import { motion } from "framer-motion";
-
-import "react-vertical-timeline-component/style.min.css";
-
-import { styles } from "../styles";
-import { experiences } from "../constants";
-import { SectionWrapper } from "../hoc";
-import { textVariant } from "../utils/motion";
-
-const ExperienceCard = ({ experience }) => {
-  return (
-    <VerticalTimelineElement
-      contentStyle={{
-        background: "#1d1836",
-        color: "#fff",
-      }}
-      contentArrowStyle={{ borderRight: "7px solid  #232631" }}
-      date={experience.date}
-      iconStyle={{ background: experience.iconBg }}
-      icon={
-        <div className='flex justify-center items-center w-full h-full'>
-          <span className='text-white text-xs sm:text-sm font-bold'>{experience.companyMark}</span>
-        </div>
-      }
-    >
-      <div>
-        <h3 className='text-white text-[24px] font-bold'>{experience.title}</h3>
-        <p
-          className='text-secondary text-[16px] font-semibold'
-          style={{ margin: 0 }}
-        >
-          {experience.company_name}
-        </p>
-      </div>
-
-      <ul className='mt-5 list-disc ml-5 space-y-2'>
-        {experience.points.map((point, index) => (
-          <li
-            key={`experience-point-${index}`}
-            className='text-white-100 text-[14px] pl-1 tracking-wider'
-          >
-            {point}
-          </li>
-        ))}
-      </ul>
-    </VerticalTimelineElement>
-  );
-};
-
-const Experience = () => {
-  return (
-    <>
-      <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-center`}>
-          Where I’ve contributed
-        </p>
-        <h2 className={`${styles.sectionHeadText} text-center`}>
-          Experience.
-        </h2>
-      </motion.div>
-
-      <div className='mt-20 flex flex-col'>
-        <VerticalTimeline>
-          {experiences.map((experience, index) => (
-            <ExperienceCard
-              key={`experience-${index}`}
-              experience={experience}
-            />
-          ))}
-        </VerticalTimeline>
-      </div>
-    </>
-  );
-};
-
-export default SectionWrapper(Experience, "experience");
+import { useState } from 'react';
+import { experiences } from '../constants';
+import { SectionWrapper } from '../hoc';
+import { styles } from '../styles';
+function Experience() {
+  const [selected,setSelected]=useState(0);
+  const job=experiences[selected];
+  return <><p className={styles.sectionSubText}>Where I’ve contributed</p><h2 className={styles.sectionHeadText}>Career constellation.</h2><p className="career-intro">Three chapters of building interfaces. Select a star to explore the work.</p>
+    <div className="career-map" role="group" aria-label="Career milestones">{experiences.map((experience,i)=><button key={experience.company_name} type="button" aria-pressed={selected===i} onClick={()=>setSelected(i)}><span className="career-star" aria-hidden="true">✦</span><small>{experience.date}</small><strong>{experience.company_name}</strong><span>{experience.title}</span></button>)}</div>
+    <article className="career-detail"><p className="eyebrow">CHAPTER 0{3-selected} / {job.date}</p><h3>{job.title}</h3><p className="career-company">{job.company_name} · Bengaluru, India</p><ul>{job.points.map(point=><li key={point}>{point}</li>)}</ul></article>
+  </>;
+}
+export default SectionWrapper(Experience,'experience');

@@ -7,14 +7,14 @@ import { fadeIn, textVariant } from "../utils/motion";
 const highlights = [
   { value: "3+ years", label: "building interfaces" },
   { value: "50+", label: "reusable components shipped" },
-  { value: "20-40%", label: "measurable performance gains" },
+  { value: "30–40%", label: "page-load improvements at IIFA" },
 ];
 
 const About = () => (
   <>
     <motion.div variants={textVariant()}>
       <p className={styles.sectionSubText}>About me</p>
-      <h2 className={styles.sectionHeadText}>Full stack, built for people.</h2>
+      <h2 className={styles.sectionHeadText}>Interfaces, built for people.</h2>
     </motion.div>
 
     <motion.div
@@ -23,7 +23,7 @@ const About = () => (
     >
       <div>
         <p className='text-secondary text-[17px] leading-8 max-w-3xl'>
-          I’m a full stack engineer in Bengaluru with 3+ years of experience building
+          I’m a frontend engineer in Bengaluru with 3+ years of experience building
           responsive web and mobile products with React, Next.js, TypeScript, and
           React Native. I focus on reusable UI architecture, accessible design,
           thoughtful API integration, and fast, dependable experiences.
