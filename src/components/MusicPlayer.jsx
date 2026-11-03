@@ -31,6 +31,7 @@ function createSoundtrack() {
   const beat = 60 / 94 / 2;
   const timer = setInterval(() => {
     if (context.state !== 'running') return;
+    next = Math.max(next, context.currentTime + 0.01);
     while (next < context.currentTime + 0.2) {
       const chord = chords[Math.floor(step / 16) % chords.length];
       if (step % 16 === 0) chord.slice(1).forEach(n => note(n, next, beat * 17, 0.026, 'sine'));
@@ -60,7 +61,10 @@ export default function MusicPlayer() {
   }, []);
   const toggle = async () => {
     try {
-      if (!engine.current) engine.current = createSoundtrack();
+      if (!engine.current) {
+        engine.current = createSoundtrack();
+        engine.current.master.gain.value = volume / 100;
+      }
       if (playing) { await engine.current.context.suspend(); setPlaying(false); }
       else { await engine.current.context.resume(); setPlaying(true); }
       setError('');
