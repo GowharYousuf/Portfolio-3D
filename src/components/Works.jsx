@@ -7,7 +7,7 @@ import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 
-const ProjectCard = ({ index, name, description, tags, image, source_code_link, live_demo_link, category, featured, reduceMotion }) => (
+const ProjectCard = ({ index, name, description, tags, image, source_code_link, live_demo_link, category, featured, reduceMotion, conceptVisual }) => (
   <motion.div
     initial={{ opacity: 0, y: 16 }}
     animate={{ opacity: 1, y: 0 }}
@@ -26,7 +26,7 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
     >
       <div className='relative w-full h-[210px] overflow-hidden rounded-2xl bg-[#111321]'>
         {image ? (
-          <img src={image} alt={`${name} project preview`} loading='lazy' className='w-full h-full object-cover' />
+          <img src={image} alt={`${name} — ${conceptVisual ? "illustrative concept preview" : "project preview"}`} loading='lazy' className='w-full h-full object-cover' />
         ) : (
           <div className='flex h-full flex-col justify-between bg-gradient-to-br from-[#282143] via-[#17182a] to-[#0d1020] p-5'>
             <span className='text-xs uppercase tracking-[0.2em] text-[#C5B2FF]'>{category || "Project"}</span>

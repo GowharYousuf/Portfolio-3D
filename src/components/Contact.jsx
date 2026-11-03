@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { lazy, Suspense, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
+const EarthCanvas = lazy(() => import("./canvas/Earth"));
 
 const Contact = () => {
   const formRef = useRef();
@@ -74,7 +75,7 @@ const Contact = () => {
 
   return (
     <div
-      className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
+      className="contact-layout"
     >
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
@@ -145,12 +146,7 @@ const Contact = () => {
         variants={slideIn("right", "tween", 0.2, 1)}
         className='xl:flex-1 xl:h-auto md:h-[550px] h-[350px]'
       >
-        <div className="flex h-full flex-col justify-center items-center rounded-2xl border border-white/10 bg-gradient-to-br from-[#17152c] to-[#080b18] p-8 text-center">
-          <span aria-hidden="true" className="text-7xl text-[#bca4f4] mb-6">↗</span>
-          <p className="text-2xl sm:text-4xl font-semibold">Have something<br />in mind?</p>
-          <p className="text-secondary mt-5 max-w-xs leading-7">Let’s turn your next idea into a thoughtful digital experience.</p>
-          <a href="https://www.linkedin.com/in/gowhar-yousuf-262594323" target="_blank" rel="noreferrer" className="mt-8 text-[#c5aeff] text-sm">Connect on LinkedIn ↗</a>
-        </div>
+        <Suspense fallback={<div className="scene-fallback">Loading globe…</div>}><EarthCanvas /></Suspense>
       </motion.div>
     </div>
   );

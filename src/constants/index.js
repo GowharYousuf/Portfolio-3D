@@ -1,3 +1,37 @@
+import visual0 from "../assets/projects/visuals/apple-website.svg";
+import visual1 from "../assets/projects/visuals/admin-folio.svg";
+import visual2 from "../assets/projects/visuals/portfolio-3d.svg";
+import visual3 from "../assets/projects/visuals/gowhar-3d.svg";
+import visual4 from "../assets/projects/visuals/alliance-assessment.svg";
+import visual5 from "../assets/projects/visuals/monthly-planner.svg";
+import visual6 from "../assets/projects/visuals/chipper-truffle.svg";
+import visual7 from "../assets/projects/visuals/assistant-box.svg";
+import visual8 from "../assets/projects/visuals/personal-portfolio.svg";
+import visual9 from "../assets/projects/visuals/tangerine-pony.svg";
+import visual10 from "../assets/projects/visuals/education-portfolio.svg";
+import visual11 from "../assets/projects/visuals/sura-website-demo.svg";
+import visual12 from "../assets/projects/visuals/portfolio-website.svg";
+import visual13 from "../assets/projects/visuals/melodic-banoffee.svg";
+import visual14 from "../assets/projects/visuals/login-form.svg";
+import visual15 from "../assets/projects/visuals/resume-builder.svg";
+const projectVisuals = {
+  "Apple Website": visual0,
+  "Admin Folio": visual1,
+  "Portfolio 3D": visual2,
+  "Gowhar 3D": visual3,
+  "Alliance Assessment": visual4,
+  "Monthly Planner": visual5,
+  "Chipper Truffle": visual6,
+  "Assistant Box": visual7,
+  "Personal Portfolio": visual8,
+  "Tangerine Pony": visual9,
+  "Education Portfolio": visual10,
+  "Sura Website Demo": visual11,
+  "Portfolio Website": visual12,
+  "Melodic Banoffee": visual13,
+  "Login Form": visual14,
+  "Resume Builder": visual15,
+};
 import taskInventoryPreview from "../assets/projects/task-inventory.svg";
 import subscriblyPreview from "../assets/projects/subscribly.svg";
 import cricFacePreview from "../assets/projects/cric-face.svg";
@@ -237,4 +271,4 @@ export const projects = [
     image: "https://d33wubrfki0l68.cloudfront.net/64cdd97cdad64a0cba2bab4d/screenshot_2023-08-05-05-10-08-0000.png",
     source_code_link: "https://github.com/GowharYousuf/ResumeBuilder-website",
   },
-];
+].map(project => ({ ...project, image: projectVisuals[project.name] || project.image, conceptVisual: Boolean(projectVisuals[project.name]) }));
