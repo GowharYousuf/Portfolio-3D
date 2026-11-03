@@ -1,27 +1,9 @@
-import { BrowserRouter } from "react-router-dom";
-
-import { About, Contact, Education, Experience, Hero, Navbar, Tech, Works, StarsCanvas } from "./components";
-
-const App = () => {
-  return (
-    <BrowserRouter>
-      <div className='relative z-0 bg-primary'>
-        <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
-          <Navbar />
-          <Hero />
-        </div>
-        <About />
-        <Experience />
-        <Tech />
-        <Works />
-        <Education />
-        <div className='relative z-0'>
-          <Contact />
-          <StarsCanvas />
-        </div>
-      </div>
-    </BrowserRouter>
-  );
+import { MotionConfig } from 'framer-motion';
+import { About, Contact, Education, Experience, Hero, Navbar, Tech, Works } from './components';
+export default function App() {
+  return <MotionConfig reducedMotion="user"><div className="relative z-0 bg-primary">
+    <a className="skip-link" href="#main">Skip to content</a>
+    <Navbar /><main id="main"><Hero /><About /><Experience /><Tech /><Works /><Education /><Contact /></main>
+    <footer className="site-footer"><a href="#home" className="wordmark">g. <span>Gowhar Yousuf</span></a><p>Thoughtfully designed. Carefully engineered.</p><a href="#home">Back to top ↑</a></footer>
+  </div></MotionConfig>;
 }
-
-export default App;

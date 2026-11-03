@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Tilt from "react-parallax-tilt";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { styles } from "../styles";
 import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 
-const ProjectCard = ({ index, name, description, tags, image, source_code_link, live_demo_link, category, featured }) => (
+const ProjectCard = ({ index, name, description, tags, image, source_code_link, live_demo_link, category, featured, reduceMotion }) => (
   <motion.div
     initial={{ opacity: 0, y: 16 }}
     animate={{ opacity: 1, y: 0 }}
@@ -15,6 +15,8 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
     className='h-full'
   >
     <Tilt
+      tiltEnable={!reduceMotion}
+      tiltReverse={false}
       tiltMaxAngleX={4}
       tiltMaxAngleY={4}
       scale={1.01}
@@ -58,8 +60,15 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
 );
 
 const Works = () => {
+  const reduceMotion = useReducedMotion();
   const [showAll, setShowAll] = useState(false);
-  const visibleProjects = showAll ? projects : projects.slice(0, 6);
+  const [filter, setFilter] = useState("All");
+  const [query, setQuery] = useState("");
+  const filtered = projects.filter(project => {
+    const matches = filter === "All" || (filter === "Web" && !project.tags.includes("React Native") && !project.tags.includes("Three.js")) || (filter === "Mobile" && project.tags.includes("React Native")) || (filter === "3D" && project.tags.includes("Three.js"));
+    return matches && `${project.name} ${project.description} ${project.tags.join(" ")}`.toLowerCase().includes(query.toLowerCase());
+  });
+  const visibleProjects = showAll ? filtered : filtered.slice(0, 6);
 
   return (
     <>
@@ -77,20 +86,25 @@ const Works = () => {
         </motion.p>
       </div>
 
-      <div className='mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 items-stretch'>
+      <div className="project-toolbar" role="group" aria-label="Filter projects">
+        {["All", "Web", "Mobile", "3D"].map(value => <button type="button" key={value} aria-pressed={filter === value} onClick={() => { setFilter(value); setShowAll(false); }}>{value}</button>)}
+        <input type="search" aria-label="Search projects" placeholder="Search projects or technologies…" value={query} onChange={e => { setQuery(e.target.value); setShowAll(false); }} />
+      </div>
+      <p className="project-result-count" role="status">{filtered.length ? `Showing ${visibleProjects.length} of ${filtered.length} projects` : "No projects found. Try another search or filter."}</p>
+      <div className='mt-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 items-stretch'>
         {visibleProjects.map((project, index) => (
-          <ProjectCard key={project.name} index={index} {...project} />
+          <ProjectCard key={project.name} index={index} {...project} reduceMotion={reduceMotion} />
         ))}
       </div>
 
-      {projects.length > 6 && (
+      {filtered.length > 6 && (
         <button
           type='button'
           aria-expanded={showAll}
           onClick={() => setShowAll((value) => !value)}
           className='mt-8 rounded-xl border border-[#A98AFF] px-5 py-3 text-white font-semibold transition-colors hover:bg-[#915EFF]/20'
         >
-          {showAll ? "Show fewer projects" : `Show all ${projects.length} projects`}
+          {showAll ? "Show fewer projects" : `Show all ${filtered.length} projects`}
         </button>
       )}
     </>

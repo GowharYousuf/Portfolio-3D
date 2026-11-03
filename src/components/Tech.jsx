@@ -11,19 +11,17 @@ import { SectionWrapper } from "../hoc";
 import { skillGroups } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 import { styles } from "../styles";
-import {
-  css,
-  docker,
-  git,
-  github,
-  html,
-  javascript,
-  mongodb,
-  reactjs,
-  redux,
-  tailwind,
-  typescript,
-} from "../assets";
+import css from "../assets/tech/css.png";
+import docker from "../assets/tech/docker.png";
+import git from "../assets/tech/git.png";
+import github from "../assets/github.png";
+import html from "../assets/tech/html.png";
+import javascript from "../assets/tech/javascript.png";
+import mongodb from "../assets/tech/mongodb.png";
+import reactjs from "../assets/tech/reactjs.png";
+import redux from "../assets/tech/redux.png";
+import tailwind from "../assets/tech/tailwind.png";
+import typescript from "../assets/tech/typescript.png";
 
 const skillLogos = {
   "JavaScript (ES6+)": javascript,
