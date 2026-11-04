@@ -57,7 +57,7 @@ export default function InteractiveDesk() {
       <span className="drag-hint">↔ Drag to explore</span>
       <div className="scene-swatches">{['#a78bfa', '#5eead4', '#fb9d77'].map((c, i) => <button type="button" key={c} aria-label={['Violet lighting', 'Mint lighting', 'Peach lighting'][i]} aria-pressed={color === c} onClick={() => setColor(c)} style={{ '--swatch': c }} />)}</div>
       <button type="button" onClick={() => setRotating(v => !v)} aria-pressed={!rotating}>{rotating ? 'Pause' : 'Play'}</button>
-      <button type="button" onClick={() => controls.current?.reset()}>Reset ↺</button>
+      <button type="button" onClick={() => {setColor('#a78bfa');setRotating(true);controls.current?.reset();}}>Reset ↺</button>
     </div>
   </div>;
 }

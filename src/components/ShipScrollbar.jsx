@@ -27,6 +27,8 @@ export default function ShipScrollbar() {
   };
   return <div ref={rail} className="ship-scrollbar" role="scrollbar" aria-label="Spaceship page scroll" aria-controls="main" aria-orientation="vertical" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress * 100)} aria-valuetext={Math.round(progress * 100) + '% through the universe'} tabIndex={available ? 0 : -1} style={{visibility:available ? 'visible' : 'hidden'}} onPointerDown={e => {
     if(e.button !== 0) return;
+    e.preventDefault();
+    window.getSelection()?.removeAllRanges();
     const ship = e.currentTarget.querySelector('.scroll-ship').getBoundingClientRect();
     offset.current = e.clientY >= ship.top && e.clientY <= ship.bottom ? e.clientY - ship.top : 24;
     dragging.current = true; e.currentTarget.setPointerCapture(e.pointerId); e.currentTarget.focus(); move(e.clientY);

@@ -28,14 +28,14 @@ export default function App() {
   };
   return <MotionConfig reducedMotion="user"><div className="relative z-0">
     <Starfield />
-    {welcoming && <Welcome onEnter={enterWorld} onQuickView={() => {setQuickView(true);enterWorld(true);}} />}
+    {welcoming && <Welcome onEnter={enterWorld} />}
     <div inert={welcoming ? '' : undefined}><MusicPlayer /></div>
     <div className="site-shell" inert={welcoming ? '' : undefined}>
     {!welcoming && <ShipScrollbar />}
     {!welcoming && <MissionControl quickView={quickView} onQuickView={changeView} onNavigate={navigate} />}
     <a className="skip-link" href="#main">Skip to content</a>
     <Navbar onNavigate={navigate} /><main id="main" tabIndex={-1}><div hidden={!quickView}><QuickView onExplore={() => changeView(false)} /></div><div hidden={quickView}><Hero /><About /><Experience /><Tech /><Works /><Education /><Contact /></div></main>
-    <footer className="site-footer"><a href="#home" className="wordmark">g. <span>Gowhar Yousuf</span></a><p>Thoughtfully designed. Carefully engineered.</p><a href="#home">Back to top ↑</a></footer>
+    <footer className="site-footer"><a href="#home" className="wordmark" onClick={e => {e.preventDefault();navigate('home');}}>g. <span>Gowhar Yousuf</span></a><p>Thoughtfully designed. Carefully engineered.</p><a href="#main" onClick={e => {e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});}}>Back to top ↑</a></footer>
     </div>
   </div></MotionConfig>;
 }

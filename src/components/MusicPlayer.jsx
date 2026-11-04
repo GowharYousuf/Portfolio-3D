@@ -99,8 +99,14 @@ export default function MusicPlayer() {
     const launch = event => {
       enabled.current = true;
       start();
-      engine.current?.launch(event.detail?.reduced ? 0.45 : 2.7);
+      if (engine.current?.context.state === 'running') engine.current.launch(event.detail?.reduced ? 0.45 : 2.7);
     };
+    const unlock = event => {
+      if (!enabled.current || event.target.closest?.('.music-player')) return;
+      if (engine.current?.context.state !== 'running') start();
+    };
+    document.addEventListener('pointerdown', unlock);
+    document.addEventListener('keydown', unlock);
     window.addEventListener('portfolio:launch', launch);
     window.addEventListener('portfolio:enter', enter);
     document.addEventListener('visibilitychange', visibility);
@@ -108,6 +114,8 @@ export default function MusicPlayer() {
       window.removeEventListener('portfolio:enter', enter);
       window.removeEventListener('portfolio:launch', launch);
       document.removeEventListener('visibilitychange', visibility);
+      document.removeEventListener('pointerdown', unlock);
+      document.removeEventListener('keydown', unlock);
       if (engine.current) { engine.current.context.onstatechange = null; engine.current.dispose(); engine.current = null; }
     };
   }, [start]);

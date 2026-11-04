@@ -31,6 +31,8 @@ Copy `.env.example` to `.env.local` and supply all three public EmailJS configur
 
 ## Resume-led exploration
 
+The welcome screen now starts its launch after a one-second countdown with no entry buttons. Sound starts where autoplay is allowed; otherwise the first page interaction resumes music. Page-landmark and scrollbar focus styles are scoped to eliminate full-height edge outlines, and ship dragging prevents accidental text selection. The skills workbench adds core technology cards, category filters, cross-category search, selectable skill context, and project/experience links.
+
 Content is aligned with the supplied Gowhar Yousuf resume: Frontend Engineer positioning, React Query, Node.js, Vercel, listed engineering practices, hospital insurance work, and SQLAlchemy for Task Inventory. The original PDF is bundled unchanged at `/gowhar-yousuf-resume.pdf`.
 
 The project universe links three interactive Three.js planets to resume-grounded project summaries. Small task, subscription-total, and merchandise-cart demonstrations use explicit sample data in browser-local state; they are concept demos, not connections to production applications.
